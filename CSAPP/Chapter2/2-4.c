@@ -1,0 +1,56 @@
+#include <stdio.h>
+
+typedef unsigned char *byte_pointer;
+
+void show_bytes(byte_pointer start, size_t len){
+    size_t i;
+    for (i = 0; i < len; i++){
+        printf("%.2x ", start[i]);
+    }
+    printf("\n");
+}
+
+void show_int(int x){
+    show_bytes((byte_pointer)&x, sizeof(int));
+}
+
+void show_float(float x){
+    show_bytes((byte_pointer)&x, sizeof(float));
+}
+
+void show_pointer(void *x){
+    show_bytes((byte_pointer)&x, sizeof(void *));
+}
+
+void test1(){//原书 图2-4
+    int val = 12345;
+    float fval = 12345.0;
+    int *pval = &val;
+
+    printf("Integer representation:\n");
+    show_int(val);
+
+    printf("Float representation:\n");
+    show_float(fval);
+
+    printf("Pointer representation:\n");
+    show_pointer(pval);
+
+    return;
+}
+
+void test2(){//原书 习题2-5
+    int val = 0x87654321;
+    byte_pointer valp = (byte_pointer)&val;
+    show_bytes(valp, 1);
+    show_bytes(valp, 2);
+    show_bytes(valp, 3);
+    return;
+}
+
+int main(){
+    //test1();
+    test2();
+
+    return 0;
+}
