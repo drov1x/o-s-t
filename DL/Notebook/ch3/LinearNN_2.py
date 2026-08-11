@@ -1,11 +1,10 @@
-import numpy as np
 import torch
 from d2l import torch as d2l
 from torch.utils import data
 from torch import nn    # nn = Neural Network 神经网络
 
+# 生成数据集（略，详参LinearNN_1.py）
 def synthetic_data(w, b, num_examples):
-    '''生成数据集'''
     X = torch.normal(0, 1, (num_examples, len(w)))
     y = torch.matmul(X, w) + b
     y += torch.normal(0, 0.01, y.shape)
@@ -15,22 +14,22 @@ true_w = torch.tensor([2, -3.4])
 true_b = 4.2
 features, labels = synthetic_data(true_w, true_b, 1000)
 
-n = 0
-print('features:', features[n], '\nlabels:', labels[n])
+#n = 0
+#print('features:', features[n], '\nlabels:', labels[n])
 
 # 生成图查看样本情况
-d2l.set_figsize()
-d2l.plt.scatter(features[:, 1].detach().numpy(), labels.detach().numpy(), 1)
+#d2l.set_figsize()
+#d2l.plt.scatter(features[:, 1].detach().numpy(), labels.detach().numpy(), 1)
 
 
 def load_array(data_arrays, batch_size, is_train = True):
     dataset = data.TensorDataset(*data_arrays)                          # 把元组解包成元素，xxx(a, b)
-    return data.DataLoader(dataset, batch_size, shuffle = is_train)     # 返回的对象本质就是迭代器
+    return data.DataLoader(dataset, batch_size, shuffle = is_train)     # 返回的对象本质就是迭代器，shuffle是打乱数据
 
 batch_size = 10
 data_iter = load_array((features, labels), batch_size)
 
-print(next(iter(data_iter)))    # 检查迭代器
+#print(next(iter(data_iter)))    # 检查迭代器
 
 # 1. 创建模型
 net = nn.Sequential(nn.Linear(2, 1))
