@@ -16,7 +16,7 @@ features, labels = synthetic_data(true_w, true_b, 1000)     # 这里两个变量
 # 检查样本
 #n = 0
 #print('features:', features[n], '\nlabels:', labels[n])
-#
+# 
 # 生成图查看样本情况
 #d2l.set_figsize()
 #d2l.plt.scatter(features[:, 1].detach().numpy(), labels.detach().numpy(), 1)

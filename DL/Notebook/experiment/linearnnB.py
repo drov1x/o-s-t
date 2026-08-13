@@ -18,3 +18,6 @@ def data_iter(data_arrays, batch_size, trains = True):
     dataset = data.TensorDataset(*data_arrays)
     return data.DataLoader(data)
 
+net = nn.Sequential(nn.Linear(2, 1))
+
+net.init.normal_(net.weight, std=0.01)
