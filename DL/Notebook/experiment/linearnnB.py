@@ -20,4 +20,6 @@ def data_iter(data_arrays, batch_size, trains = True):
 
 net = nn.Sequential(nn.Linear(2, 1))
 
-net.init.normal_(net.weight, std=0.01)
+nn.init.normal_(net[0].weight, std=0.01)
+
+
