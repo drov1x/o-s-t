@@ -3,3 +3,5 @@
 .idea/
 .gitignore/
 .claude/agents/Claude Code.agent.md
+output/
+*.exe
